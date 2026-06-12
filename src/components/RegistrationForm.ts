@@ -2,23 +2,37 @@ import { Locator, Page } from '@playwright/test';
 
 export default class RegistrationForm {
   page: Page;
-  form: Locator;
-  nameInput: Locator;
-  lastNameInput: Locator;
-  emailInput: Locator;
-  passwordInput: Locator;
-  repeatPasswordInput: Locator;
-  registerButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.form = page.locator('.modal-content');
-    this.nameInput = this.form.locator('input[name="name"]');
-    this.lastNameInput = this.form.locator('input[name="lastName"]');
-    this.emailInput = this.form.locator('input[name="email"]');
-    this.passwordInput = this.form.locator('input[name="password"]');
-    this.repeatPasswordInput = this.form.locator('input[name="repeatPassword"]');
-    this.registerButton = this.form.getByRole('button', { name: 'Register' });
+  }
+
+  get form(): Locator {
+    return this.page.locator('.modal-content');
+  }
+
+  get nameInput(): Locator {
+    return this.form.locator('input[name="name"]');
+  }
+
+  get lastNameInput(): Locator {
+    return this.form.locator('input[name="lastName"]');
+  }
+
+  get emailInput(): Locator {
+    return this.form.locator('input[name="email"]');
+  }
+
+  get passwordInput(): Locator {
+    return this.form.locator('input[name="password"]');
+  }
+
+  get repeatPasswordInput(): Locator {
+    return this.form.locator('input[name="repeatPassword"]');
+  }
+
+  get registerButton(): Locator {
+    return this.form.getByRole('button', { name: 'Register' });
   }
 
   async fillRegistrationForm(name: string, lastName: string, email: string, password: string, repeatPassword: string) {
