@@ -89,3 +89,4 @@ export default class RegistrationForm {
     return this.form.getByText(text, { exact: true });
   }
 }
+// fik
