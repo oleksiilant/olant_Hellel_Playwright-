@@ -43,6 +43,11 @@ export default defineConfig({
 
   projects: [
     {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
       name: 'Smoke',
       testMatch: /.*smoke\.spec\.ts/,
       retries: 0,
@@ -50,27 +55,32 @@ export default defineConfig({
     },
     {
       name: 'chromium',
-      testIgnore: /.*smoke\.spec\.ts/,
+      dependencies: ['setup'],
+      testIgnore: [/.*smoke\.spec\.ts/, /.*\.setup\.ts/],
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
-      testIgnore: /.*smoke\.spec\.ts/,
+      dependencies: ['setup'],
+      testIgnore: [/.*smoke\.spec\.ts/, /.*\.setup\.ts/],
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
-      testIgnore: /.*smoke\.spec\.ts/,
+      dependencies: ['setup'],
+      testIgnore: [/.*smoke\.spec\.ts/, /.*\.setup\.ts/],
       use: { ...devices['Desktop Safari'] },
     },
     {
       name: 'Mobile Chrome',
-      testIgnore: /.*smoke\.spec\.ts/,
+      dependencies: ['setup'],
+      testIgnore: [/.*smoke\.spec\.ts/, /.*\.setup\.ts/],
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Mobile Safari',
-      testIgnore: /.*smoke\.spec\.ts/,
+      dependencies: ['setup'],
+      testIgnore: [/.*smoke\.spec\.ts/, /.*\.setup\.ts/],
       use: { ...devices['iPhone 12'] },
     },
   ],
