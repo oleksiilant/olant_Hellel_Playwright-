@@ -1,13 +1,6 @@
 import { test, expect } from '@playwright/test';
 import HomePage from '../src/pages/HomePage';
 
-test.use({
-  httpCredentials: {
-    username: 'guest',
-    password: 'welcome2qauto',
-  },
-});
-
 test.describe('Registration form with POM', () => {
   test.beforeEach(async ({ page }) => {
     const homePage = new HomePage(page);

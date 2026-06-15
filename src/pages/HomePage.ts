@@ -4,7 +4,7 @@ import RegistrationForm from '../components/RegistrationForm';
 
 export default class HomePage extends BasePage {
   constructor(page: Page) {
-    super(page, 'https://qauto.forstudy.space/');
+    super(page, '/');
   }
 
   async openRegistrationForm() {

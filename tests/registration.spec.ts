@@ -1,15 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test.use({
-  httpCredentials: {
-    username: 'guest',
-    password: 'welcome2qauto',
-  },
-});
-
 test.describe('Registration form', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://qauto.forstudy.space/');
+    await page.goto('/');
     await page.getByRole('button', { name: 'Sign up' }).click();
     await expect(page.getByText('Registration')).toBeVisible();
   });

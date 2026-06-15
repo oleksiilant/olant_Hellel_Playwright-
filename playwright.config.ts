@@ -1,4 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
+import { existsSync } from 'node:fs';
+
+if (existsSync('.env')) {
+  process.loadEnvFile('.env');
+}
+
+const httpCredentialsUsername = process.env.HTTP_CREDENTIALS_USERNAME;
+const httpCredentialsPassword = process.env.HTTP_CREDENTIALS_PASSWORD;
 
 export default defineConfig({
   testDir: './tests',
@@ -18,7 +26,14 @@ export default defineConfig({
     ['html', { open: 'never' }],
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'https://playwright.dev',
+    baseURL: process.env.BASE_URL,
+    httpCredentials:
+      httpCredentialsUsername && httpCredentialsPassword
+        ? {
+            username: httpCredentialsUsername,
+            password: httpCredentialsPassword,
+          }
+        : undefined,
     actionTimeout: 10_000,
     navigationTimeout: 15_000,
     trace: 'on-first-retry',
