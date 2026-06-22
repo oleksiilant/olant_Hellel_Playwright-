@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Playwright documentation', () => {
+test.describe('QAuto home page', () => {
   test.beforeEach(async ({ page }, testInfo) => {
     console.log(`Running ${testInfo.title}`);
     await page.goto('/');
@@ -16,17 +16,17 @@ test.describe('Playwright documentation', () => {
 
   test('shows product title', async ({ page }) => {
     await test.step('Check page title', async () => {
-      await expect(page).toHaveTitle(/Playwright/);
+      await expect(page).toHaveTitle(/Hillel Qauto/);
     });
   });
 
-  test('opens installation guide from get started link', async ({ page }) => {
-    await test.step('Open Get started page', async () => {
-      await page.getByRole('link', { name: 'Get started' }).click();
+  test('opens sign up form', async ({ page }) => {
+    await test.step('Open Sign up form', async () => {
+      await page.getByRole('button', { name: 'Sign up' }).click();
     });
 
-    await test.step('Check installation heading', async () => {
-      await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+    await test.step('Check registration form title', async () => {
+      await expect(page.getByText('Registration')).toBeVisible();
     });
   });
 });
